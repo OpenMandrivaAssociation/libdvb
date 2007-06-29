@@ -1,6 +1,6 @@
 %define name libdvb
 %define version 0.5.5.1
-%define release %mkrel 3
+%define release %mkrel 4
 
 Summary: DVB mpegtools libdvb - base tools
 Name: %{name}
@@ -37,9 +37,10 @@ manipulation of various MPEG file formats and their DVB variants
 
 %build
 # -I../../include is wrong... point to the headers of the current kernel
+# (anssi) no shared libraries provided; build static libs with -fPIC:
 make "INCS=-I/lib/modules/`uname -r`/build/include -I../include" \
  "INCLUDES=-I/lib/modules/`uname -r`/build/include -I../include" \
-  PREFIX=%_prefix
+  PREFIX=%_prefix CFLAGS="%optflags -fPIC"
 make pkgconfig \
   PREFIX=%_prefix LIBDIR=%_libdir
 
