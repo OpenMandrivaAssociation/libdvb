@@ -13,6 +13,7 @@ Patch4: libdvb-maindvb.patch
 License: GPL
 Group: Video
 URL: http://www.metzlerbros.org/dvb/
+BuildRoot: %{_tmppath}/%{name}-buildroot
 Provides: dvb-mpegtools
 BuildRequires: gcc-c++
 
