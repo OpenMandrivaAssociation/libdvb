@@ -1,6 +1,6 @@
 %define name libdvb
 %define version 0.5.5.1
-%define release %mkrel 4
+%define release %mkrel 5
 
 Summary: DVB mpegtools libdvb - base tools
 Name: %{name}
