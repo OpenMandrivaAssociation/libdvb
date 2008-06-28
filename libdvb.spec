@@ -1,38 +1,38 @@
-%define name libdvb
-%define version 0.5.5.1
-%define release %mkrel 6
-
-Summary: DVB mpegtools libdvb - base tools
-Name: %{name}
-Version: %{version}
-Release: %{release}
-Source0: http://www.metzlerbros.org/dvb/%{name}-%{version}.tar.gz
-Patch: libdvb-0.5.5.1-long.patch
-Patch3: libdvb-0.5.5.1-pkgconfig.patch
-Patch4: libdvb-maindvb.patch
-License: GPL
-Group: Video
-URL: http://www.metzlerbros.org/dvb/
-BuildRoot: %{_tmppath}/%{name}-buildroot
-Provides: dvb-mpegtools
-BuildRequires: gcc-c++
+Summary:	DVB mpegtools libdvb - base tools
+Name:		libdvb
+Version:	0.5.5.1
+Release:	%mkrel 7
+License:	GPL
+Group:		Video
+URL:		http://www.metzlerbros.org/dvb/
+Source0:	http://www.metzlerbros.org/dvb/%{name}-%{version}.tar.gz
+Patch0:		libdvb-0.5.5.1-long.patch
+Patch3:		libdvb-0.5.5.1-pkgconfig.patch
+Patch4:		libdvb-maindvb.patch
+Patch5:		libdvb-0.5.5.1-gcc43.patch
+Provides:	dvb-mpegtools
+BuildRequires:	gcc-c++
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Manipulation of various MPEG file formats and their DVB variants
 
-%package devel
-Summary: DVB mpegtools libdvb - developer tools
-Group: Development/Other
-Provides: dvb-mpegtools-devel
+%package	devel
+Summary:	DVB mpegtools libdvb - developer tools
+Group:		Development/Other
+Provides:	dvb-mpegtools-devel
 
-%description devel
+%description	devel
 manipulation of various MPEG file formats and their DVB variants
 
 %prep
+
 %setup -q
 %patch -p1
 %patch3 -p1 -b .pkgconfig
 %patch4
+%patch5 -p1
+
 # no `configure` here..
 
 %build
@@ -45,7 +45,8 @@ make pkgconfig \
   PREFIX=%_prefix LIBDIR=%_libdir
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
+
 # make install DESTDIR=%buildroot
 %__mkdir_p %buildroot%_bindir
 make install DESTDIR=%buildroot PREFIX=%_prefix LIBDIR=%_libdir
@@ -71,9 +72,8 @@ done
 #mv %buildroot%_prefix/lib %buildroot%_libdir
 #%endif
 
-
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
@@ -84,5 +84,3 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %_libdir/*
 %_includedir/*
-
-
