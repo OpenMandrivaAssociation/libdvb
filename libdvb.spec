@@ -28,7 +28,7 @@ manipulation of various MPEG file formats and their DVB variants
 %prep
 
 %setup -q
-%patch -p1
+%patch0 -p1
 %patch3 -p1 -b .pkgconfig
 %patch4
 %patch5 -p1
