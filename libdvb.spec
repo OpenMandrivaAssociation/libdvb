@@ -51,7 +51,6 @@ rm -rf %{buildroot}
 %__mkdir_p %buildroot%_bindir
 make install DESTDIR=%buildroot PREFIX=%_prefix LIBDIR=%_libdir
 make pkgconfig-install DESTDIR=%buildroot PREFIX=%_prefix LIBDIR=%_libdir
-(cd sample_progs && make install DESTDIR=%buildroot PREFIX=%_prefix LIBDIR=%_libdir)
 
 # prefix binaries with dvb_
 for i in %buildroot%_bindir/* ; do 
