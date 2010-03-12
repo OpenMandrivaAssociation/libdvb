@@ -66,11 +66,6 @@ for i in %buildroot%_bindir/dvb_ts* %buildroot%_bindir/dvb_pes* ; do
   (cd $dir && ln -s $file `echo $file | sed -e 's/^dvb_//'`)
 done
 
-#gw lib64
-#%if %_lib == lib64
-#mv %buildroot%_prefix/lib %buildroot%_libdir
-#%endif
-
 %clean
 rm -rf %{buildroot}
 
@@ -81,5 +76,8 @@ rm -rf %{buildroot}
 
 %files devel
 %defattr(-,root,root)
-%_libdir/*
+%_libdir/libdvb.a
+%_libdir/libdvbci.a
+%_libdir/libdvbmpegtools.a
+%_libdir/pkgconfig/libdvb*.pc
 %_includedir/*
