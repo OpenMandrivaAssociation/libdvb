@@ -1,8 +1,8 @@
 Summary:	DVB mpegtools libdvb - base tools
 Name:		libdvb
 Version:	0.5.5.1
-Release:	%mkrel 7
-License:	GPL
+Release:	%mkrel 8
+License:	GPLv2+
 Group:		Video
 URL:		http://www.metzlerbros.org/dvb/
 Source0:	http://www.metzlerbros.org/dvb/%{name}-%{version}.tar.gz
@@ -36,11 +36,8 @@ manipulation of various MPEG file formats and their DVB variants
 # no `configure` here..
 
 %build
-# -I../../include is wrong... point to the headers of the current kernel
 # (anssi) no shared libraries provided; build static libs with -fPIC:
-make "INCS=-I/lib/modules/`uname -r`/build/include -I../include" \
- "INCLUDES=-I/lib/modules/`uname -r`/build/include -I../include" \
-  PREFIX=%_prefix CFLAGS="%optflags -fPIC"
+make  PREFIX=%_prefix CFLAGS="%optflags -fPIC" CXX="g++ %{ldflags}" CC="gcc %{ldflags}"
 make pkgconfig \
   PREFIX=%_prefix LIBDIR=%_libdir
 
