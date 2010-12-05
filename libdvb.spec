@@ -1,7 +1,7 @@
 Summary:	DVB mpegtools libdvb - base tools
 Name:		libdvb
 Version:	0.5.5.1
-Release:	%mkrel 8
+Release:	%mkrel 9
 License:	GPLv2+
 Group:		Video
 URL:		http://www.metzlerbros.org/dvb/
