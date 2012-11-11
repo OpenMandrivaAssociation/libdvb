@@ -1,0 +1,11 @@
+--- libdvb-0.5.5.1/sample_progs/cam_menu.cc~	2005-03-22 14:23:25.000000000 +0100
++++ libdvb-0.5.5.1/sample_progs/cam_menu.cc	2006-02-10 10:57:15.000000000 +0100
+@@ -46,7 +46,7 @@
+ 
+ void byebye(int i, void *f)
+ {
+-	int fd = (int) f;
++	long fd = (long) f;
+ 
+ 	CamPacket cp(fd, CMENU_CLOSE, 0, NULL);
+ 	cp.psend();

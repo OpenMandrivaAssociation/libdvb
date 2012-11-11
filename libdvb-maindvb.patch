@@ -1,0 +1,14 @@
+--- dvb-mpegtools/main.cc.orig	2004-01-28 20:44:27.000000000 +0100
++++ dvb-mpegtools/main.cc	2004-02-12 21:37:19.000000000 +0100
+@@ -266,6 +266,11 @@
+                 if (!strcmp(basename(argv[0]), prognames[progn]))
+                         break;
+ 
++        if (progn == PROGS+1 && argc > 1 && !strncmp(argv[0], "dvb_", 4))
++		for (progn = 0; progn < PROGS+1; progn ++)
++			if (!strcmp(basename(argv[0])+4, prognames[progn]))
++				break;
++
+         if (progn == PROGS+1 && argc > 1)
+                 for (progn = 0; progn < PROGS+1; progn ++)
+                         if (!strcmp(basename(argv[1]), prognames[progn])) {

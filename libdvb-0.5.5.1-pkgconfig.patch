@@ -1,0 +1,39 @@
+--- libdvb-0.5.5.1/Makefile.pkgconfig	2005-03-22 14:23:25.000000000 +0100
++++ libdvb-0.5.5.1/Makefile	2006-10-20 12:33:32.000000000 +0200
+@@ -14,8 +14,8 @@
+ main: $(DVB_LIBS) $(TEST_PROGS) $(DVB-MPEGTOOLS)
+ 
+ install: $(DVB_LIBS) $(HEADERS)
+-	mkdir -p $(DESTDIR)$(PREFIX)/lib
+-	install -m 644 $(DVB_LIBS) $(DESTDIR)$(PREFIX)/lib/
++	mkdir -p $(DESTDIR)$(LIBDIR)
++	install -m 644 $(DVB_LIBS) $(DESTDIR)$(LIBDIR)
+ 	mkdir -p $(DESTDIR)$(PREFIX)/include
+ 	install -m 644 $(HEADERS) $(DESTDIR)$(PREFIX)/include/
+ 	make -C dvb-mpegtools install
+@@ -80,3 +80,25 @@
+ 	cp COPYING README Makefile config.mk libdvb-$(VERSION)
+ 	tar zcf libdvb-$(VERSION).tar.gz libdvb-$(VERSION)
+ 	rm -rf libdvb-$(VERSION)
++
++pkg_incdir=$(PREFIX)/include
++pkg_libdir=$(LIBDIR)
++pkgconfigdir=$(LIBDIR)/pkgconfig
++$(DVB_LIBS:.a=.pc) : Makefile config.mk
++pkgconfig: $(DVB_LIBS:.a=.pc)
++	for lib in $(DVB_LIBS:.a=) ; do make pkgconfig-build lib=$$lib ; done
++pkgconfig-build : 
++	echo "libdir=${pkg_libdir}"                                >$(lib).pc
++	echo "includedir=$(PREFIX)/include"                       >>$(lib).pc
++	echo "largefile= -D_FILE_OFFSET_BITS=64"                  >>$(lib).pc
++	echo ""                                                   >>$(lib).pc
++	echo "Name: $(lib)"                                       >>$(lib).pc
++	echo "Version: $(VERSION)"                                >>$(lib).pc
++	echo "Description: DVB mpegtools $(lib)"                  >>$(lib).pc
++	echo 'Cflags: $${largefile} -I${pkg_incdir}'              >>$(lib).pc
++	echo 'Libs: -L${pkg_libdir} -l$(subst lib,,$(lib))'      >>$(lib).pc
++pkgconfig-install: pkgconfig
++	mkdir -p $(DESTDIR)$(pkgconfigdir)
++	for lib in $(DVB_LIBS:.a=) ; do cp $$lib.pc $(DESTDIR)$(pkgconfigdir)/ ; done
++pkgconfig-uninstall:
++	for lib in $(DVB_LIBS:.a=) ; do rm $(DESTDIR)$(pkgconfigdir)/$$lib.pc ; done
