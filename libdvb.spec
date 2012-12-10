@@ -78,3 +78,81 @@ rm -rf %{buildroot}
 %_libdir/libdvbmpegtools.a
 %_libdir/pkgconfig/libdvb*.pc
 %_includedir/*
+
+
+%changelog
+* Tue Dec 06 2011 Götz Waschk <waschk@mandriva.org> 0.5.5.1-10mdv2012.0
++ Revision: 738112
+- yearly rebuild
+
+* Sun Dec 05 2010 Oden Eriksson <oeriksson@mandriva.com> 0.5.5.1-9mdv2011.0
++ Revision: 609741
+- rebuild
+
+* Sun Jun 27 2010 Anssi Hannula <anssi@mandriva.org> 0.5.5.1-8mdv2010.1
++ Revision: 549193
+- update license tag
+- drop now unneeded include hacks
+- apply ldflags
+
+  + Götz Waschk <waschk@mandriva.org>
+    - remove debug files
+
+* Tue Oct 06 2009 Funda Wang <fwang@mandriva.org> 0.5.5.1-7mdv2010.0
++ Revision: 454503
+- fix installation
+
+* Fri Apr 10 2009 Funda Wang <fwang@mandriva.org> 0.5.5.1-7mdv2009.1
++ Revision: 365559
+- fix patch num
+
+* Sun Jun 29 2008 Oden Eriksson <oeriksson@mandriva.com> 0.5.5.1-7mdv2009.0
++ Revision: 229912
+- added a gcc43 patch (gentoo)
+- slight spec file massage
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+
+* Sun Jan 13 2008 Thierry Vignaud <tv@mandriva.org> 0.5.5.1-5mdv2008.1
++ Revision: 150554
+- rebuild
+- kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <blino@mandriva.org>
+    - restore BuildRoot
+
+* Fri Jun 29 2007 Anssi Hannula <anssi@mandriva.org> 0.5.5.1-4mdv2008.0
++ Revision: 45885
+- apply optflags
+- build static libs with -fPIC as no shared ones exist
+
+
+* Sat Oct 21 2006 Götz Waschk <waschk@mandriva.org> 0.5.5.1-3mdv2007.0
++ Revision: 71571
++ Status: not released
+- fix this patch again
+- Import libdvb
+
+* Sat Oct 21 2006 Götz Waschk <waschk@mandriva.org> 0.5.5.1-3mdv2007.1
+- fix patch 3
+
+* Fri Feb 10 2006 Götz Waschk <waschk@mandriva.org> 0.5.5.1-2mdk
+- patch for 64 bit
+
+* Thu Feb 09 2006 Götz Waschk <waschk@mandriva.org> 0.5.5.1-1mdk
+- drop prefix
+- drop patch 1
+- drop merged patch 2
+- New release 0.5.5.1
+- use mkrel
+
+* Sat Jul 17 2004 Michael Scherer <misc@mandrake.org> 0.5.4-2mdk 
+- rebuild for new gcc
+
+* Thu Mar 04 2004 Lenny Cartier <lenny@mandrakesoft.com> 0.5.4-1mdk
+- from Guido Draheim <guidod-2003-@gmx.de>
+
+* Wed Feb 25 2004 Lenny Cartier <lenny@mandrakesoft.com> 0.5.4-1mdk
+- new
+
