@@ -4,7 +4,7 @@ Version:	0.5.5.1
 Release:	11
 License:	GPLv2+
 Group:		Video
-URL:		http://www.metzlerbros.org/dvb/
+URL:		https://www.metzlerbros.org/dvb/
 Source0:	http://www.metzlerbros.org/dvb/%{name}-%{version}.tar.gz
 Patch0:		libdvb-0.5.5.1-long.patch
 Patch3:		libdvb-0.5.5.1-pkgconfig.patch
